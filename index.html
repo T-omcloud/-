@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#780b12">
+<meta name="description" content="《山河作答》——红色初心·长征礼赞互动H5">
+<title>山河作答｜红色初心·长征礼赞</title>
+<style>
+:root{--red:#8f1018;--deep:#260509;--gold:#f3d18b;--cream:#fff4df;--muted:#e9cda1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--deep);color:var(--cream);font-family:"Noto Serif SC","Songti SC","SimSun",serif;overflow:hidden}
+#progress{position:fixed;z-index:20;top:0;left:0;height:3px;width:0;background:var(--gold);transition:width .15s}
+.story{height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.page{position:relative;min-height:100dvh;scroll-snap-align:start;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:8vh 8vw 12vh;background:linear-gradient(160deg,#32070b 0%,#851019 50%,#43080d 100%)}
+.page:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,#f8d99b3d,transparent 35%),linear-gradient(0deg,#180205a8,transparent 60%);pointer-events:none}
+.page:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-5%;height:28%;background:linear-gradient(160deg,#b3242a,#640910 48%,#d13a36 50%,#4b070c 80%);clip-path:polygon(0 50%,12% 23%,25% 48%,39% 8%,53% 43%,69% 14%,84% 50%,100% 20%,100% 100%,0 100%);opacity:.92;pointer-events:none}
+.page>*{position:relative;z-index:1}.eyebrow{font: .76rem system-ui,sans-serif;letter-spacing:.18em;color:var(--gold);border-left:3px solid var(--gold);padding-left:.7rem;margin-bottom:1.1rem}
+h1{font-size:clamp(3.1rem,13vw,5.5rem);line-height:1.05;letter-spacing:.08em;margin:0 0 1rem;color:#fff1c9;text-shadow:0 3px 0 #711019,0 8px 24px #240305}
+h2{font-size:clamp(2rem,8vw,3.1rem);line-height:1.2;margin:0 0 1rem;color:#ffe3a4}
+h3{font-size:1.15rem;color:#ffe3a4;margin:.3rem 0 .5rem}p{font-size:1rem;line-height:1.95;max-width:40rem;margin:.3rem 0 .9rem;color:#fff4df}
+.kicker{font-size:.9rem;letter-spacing:.12em;color:var(--muted)}.tag{display:inline-block;border:1px solid #f4d18b88;border-radius:99px;padding:.35rem .7rem;font: .75rem system-ui,sans-serif;color:var(--gold);margin:.15rem .2rem .15rem 0}
+.stamp{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:.45rem .8rem;letter-spacing:.15em;margin-top:.6rem;transform:rotate(-2deg)}
+.hint{position:absolute!important;bottom:4vh;left:0;right:0;text-align:center;color:#ffe7b3;font:.75rem system-ui,sans-serif;letter-spacing:.14em;animation:bob 1.5s infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+.timeline{list-style:none;margin:.5rem 0 1rem;padding:0;border-left:1px solid var(--gold);max-width:40rem}
+.timeline li{position:relative;padding:0 0 .85rem 1.2rem;line-height:1.65;font-size:.94rem}.timeline li:before{content:"";position:absolute;left:-5px;top:.45rem;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px #ffffff18}
+.year{display:block;color:var(--gold);font:bold .82rem system-ui,sans-serif;letter-spacing:.08em;margin-bottom:.12rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.5rem 0 1rem}.card{border:1px solid #f4d18b70;background:#31060980;padding:.75rem;border-radius:8px}.card p{font-size:.85rem;line-height:1.65;margin:0}.card strong{display:block;color:#ffe3a4;margin-bottom:.3rem}
+.quote{font-size:clamp(1.2rem,4.8vw,1.7rem);line-height:1.85;color:#fff0c8;border-top:1px solid #f4d18b80;border-bottom:1px solid #f4d18b80;padding:.8rem 0;margin:.6rem 0 1rem}
+.btn{display:inline-block;border:1px solid var(--gold);border-radius:999px;padding:.7rem 1.1rem;color:#3b090c;background:var(--gold);text-decoration:none;font-weight:bold;margin:.4rem .35rem .3rem 0;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--gold)}.options{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}.choice{border:1px solid #f4d18b88;color:var(--cream);background:#30060980;border-radius:8px;padding:.65rem .8rem;cursor:pointer;font:inherit}.choice[aria-pressed="true"]{background:var(--gold);color:#3b090c}
+.result{border-left:3px solid var(--gold);padding:.7rem .9rem;background:#21040770;margin-top:.7rem;line-height:1.8;min-height:3rem}
+textarea{width:100%;max-width:40rem;border:1px solid #f4d18b88;border-radius:8px;background:#300609bb;color:#fff4df;padding:.8rem;font:1rem/1.7 inherit;resize:vertical}
+.small{font: .78rem/1.7 system-ui,sans-serif;color:#f1d7ab}footer{position:relative;z-index:2;font:.7rem/1.6 system-ui,sans-serif;color:#f5d9aa;margin-top:.8rem}
+@media(min-width:700px){.page{padding-left:max(12vw,calc((100vw - 720px)/2));padding-right:max(12vw,calc((100vw - 720px)/2))}.grid{gap:.8rem}.card{padding:1rem}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<main class="story" id="story" aria-label="山河作答互动H5">
+<section class="page" id="p1">
+<div class="eyebrow">红色初心 · 长征礼赞</div>
+<div class="kicker">一场跨越山河的精神接力</div>
+<h1>山河<br>作答</h1>
+<p>以长征精神为魂，以青春担当为笔。<br>从历史深处出发，读懂信念的力量，<br>再把属于今天的答案写向未来。</p>
+<div><span class="tag">回望历史</span><span class="tag">赓续精神</span><span class="tag">青春担当</span></div>
+<div class="stamp">长征未远 · 初心如磐</div>
+<div class="hint">向上滑动，开启旅程　⌄</div>
+</section>
+
+<section class="page" id="p2">
+<div class="eyebrow">第一章 / 回望来路</div>
+<h2>为什么出发？</h2>
+<p>长征不是地图上简单的一条线，而是在严峻考验中坚持理想、寻找出路、凝聚力量的伟大征程。面对险恶环境与重重困难，红军将士依靠坚定信念和顽强意志，跨越千山万水。</p>
+<div class="quote">信仰不是抽象的口号，<br>而是在艰难时刻依然选择向前。</div>
+<p>当我们重新回望这段历史，看到的不只是跋涉的艰辛，更是为了理想信念百折不挠、为了共同目标团结奋斗的精神力量。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p3">
+<div class="eyebrow">第二章 / 历史坐标</div>
+<h2>长征路上的重要时刻</h2>
+<ul class="timeline">
+<li><span class="year">1934年10月</span>中央红军开始长征，踏上战略转移的征途。</li>
+<li><span class="year">1935年1月</span>遵义会议在危急关头为党和红军指明重要方向，成为党的历史上一个生死攸关的转折点。</li>
+<li><span class="year">1935年5月</span>红军强渡大渡河、飞夺泸定桥，展现英勇顽强、不畏艰险的战斗精神。</li>
+<li><span class="year">1935年10月</span>中央红军到达陕北，长征途中开启新的历史篇章。</li>
+<li><span class="year">1936年10月</span>红军三大主力会师，长征胜利结束。</li>
+</ul>
+<p class="small">历史节点为页面概述，正式参赛前建议依据权威党史、军史资料复核表述。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p4">
+<div class="eyebrow">第三章 / 精神密码</div>
+<h2>穿越时空的力量</h2>
+<div class="grid">
+<div class="card"><strong>坚定理想</strong><p>在方向未明、道路艰难时，仍然相信目标、坚守信念。</p></div>
+<div class="card"><strong>实事求是</strong><p>从实际出发，独立自主地分析问题、寻找解决办法。</p></div>
+<div class="card"><strong>不怕牺牲</strong><p>面对困难与危险，保持勇气、韧性和向前的决心。</p></div>
+<div class="card"><strong>团结奋斗</strong><p>把个人力量汇入集体，为共同目标彼此支持、携手前行。</p></div>
+<div class="card"><strong>艰苦奋斗</strong><p>不因条件有限而放弃努力，在磨砺中锤炼本领。</p></div>
+<div class="card"><strong>依靠人民</strong><p>把人民放在心中，珍视群众支持，扎根实践、服务人民。</p></div>
+</div>
+<p>长征精神不是停留在展板上的词语。它会在每一次迎难而上、每一次协同合作、每一次把责任落到行动中的选择里重新焕发生机。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p5">
+<div class="eyebrow">第四章 / 山河见证</div>
+<h2>每一步，都不平凡</h2>
+<p>山川可以记住脚印，岁月也会记录选择。长征的故事让我们理解：伟大的征程并非没有困难，而是在困难面前仍然能够凝聚信念、彼此扶持、持续前进。</p>
+<div class="quote">脚下有泥土，心中有方向；<br>眼前有挑战，肩上有担当。</div>
+<p>把历史放在心里，不是为了停留在过去，而是为了更清醒地理解今天：我们从哪里来，要走向哪里，又该以怎样的姿态走好自己的路。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p6">
+<div class="eyebrow">第五章 / 接力今天</div>
+<h2>新时代的长征路</h2>
+<p>时代条件不断变化，但奋斗的底色始终鲜明。对于青年而言，新时代的长征，正藏在一件件具体的小事与一次次关键的选择之中。</p>
+<div class="grid">
+<div class="card"><strong>在课堂与书桌前</strong><p>勤学善思、夯实基础，把知识变成解决问题的能力。</p></div>
+<div class="card"><strong>在实验室与创新一线</strong><p>勇于探索、严谨求证，以实际行动回应时代需要。</p></div>
+<div class="card"><strong>在志愿服务中</strong><p>主动关心他人、服务集体，让温暖落在具体行动上。</p></div>
+<div class="card"><strong>在基层实践里</strong><p>走近真实生活、了解群众需求，在实践中增长才干。</p></div>
+</div>
+<p>不必等待惊天动地的时刻。把眼前的事做好，把肩上的责任扛起，把个人理想融入国家发展和人民需要，就是我们这一代人的接力方式。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p7">
+<div class="eyebrow">第六章 / 互动答题</div>
+<h2>你会怎样接过接力棒？</h2>
+<p>选择最贴近你当下行动的一项，看看这份选择能提醒自己什么。</p>
+<div class="options" role="group" aria-label="青春行动选择">
+<button class="choice" data-answer="study" aria-pressed="false">持续学习，提升本领</button>
+<button class="choice" data-answer="service" aria-pressed="false">参与志愿服务</button>
+<button class="choice" data-answer="research" aria-pressed="false">投身创新实践</button>
+<button class="choice" data-answer="community" aria-pressed="false">走进基层一线</button>
+</div>
+<div class="result" id="answerResult" aria-live="polite">选择一项行动，这里会出现一条属于你的接力寄语。</div>
+<p class="small">这不是考试，也没有标准答案。重要的是让选择落地，让承诺可以执行。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p8">
+<div class="eyebrow">第七章 / 写下承诺</div>
+<h2>我的青春行动</h2>
+<p>把感动变成行动。写下一件你愿意在近期认真完成的事，尽量具体、可执行。</p>
+<label for="promise" class="small">我的行动计划（最多120字）</label>
+<textarea id="promise" rows="3" maxlength="120" placeholder="例如：本月参加一次志愿服务，并记录服务中的观察与收获。"></textarea>
+<div><button class="btn" id="makePromise" type="button">生成我的行动誓言</button><button class="btn ghost" id="clearPromise" type="button">重新填写</button></div>
+<div class="result" id="promiseResult" aria-live="polite">你的行动誓言将在这里呈现。页面不会上传或保存你填写的内容。</div>
+<p class="small">提示：可截图保存自己的承诺，也可以把它分享给同行伙伴，互相提醒、共同进步。</p>
+<div class="hint">继续向上　⌄</div>
+</section>
+
+<section class="page" id="p9">
+<div class="eyebrow">终章 / 山河作答</div>
+<h2>把答案写在脚下</h2>
+<p>回望长征，我们读懂信念的分量；走进今天，我们更应理解担当的意义。历史交给我们的，不只是回忆，更是一份面向未来的精神嘱托。</p>
+<div class="quote">长征未远，初心如磐。<br>以青春之我，赴时代之约。<br>让信念照亮脚下的路，<br>让行动写下属于我们的回答。</div>
+<p class="kicker">红色初心 · 长征礼赞</p>
+<div><button class="btn" id="restart" type="button">再走一次这段旅程 ↺</button><button class="btn ghost" id="backPromise" type="button">修改行动誓言</button></div>
+<footer>《山河作答》为主题教育网络文化作品页面方案。正式提交前，请核对史实、补充作者信息，并确认所用素材的授权情况。</footer>
+</section>
+</main>
+<script>
+const story=document.getElementById('story'), progress=document.getElementById('progress');
+story.addEventListener('scroll',()=>{
+ const max=story.scrollHeight-story.clientHeight;
+ progress.style.width=(max>0?story.scrollTop/max*100:0)+'%';
+},{passive:true});
+document.getElementById('restart').addEventListener('click',()=>story.scrollTo({top:0,behavior:'smooth'}));
+document.getElementById('backPromise').addEventListener('click',()=>document.getElementById('p8').scrollIntoView({behavior:'smooth'}));
+const responses={
+ study:'把目标拆成每天可完成的一小步。持续积累，让知识成为解决真实问题的力量。',
+ service:'从身边的人和事开始，认真倾听需求，把热心转化为可靠、持续的服务。',
+ research:'保持好奇，也保持严谨。尊重事实、敢于试错，让创新建立在扎实的基础之上。',
+ community:'走出熟悉的环境，倾听真实声音，在基层实践中理解责任、锻炼本领。'
+};
+document.querySelectorAll('.choice').forEach(button=>button.addEventListener('click',()=>{
+ document.querySelectorAll('.choice').forEach(b=>b.setAttribute('aria-pressed','false'));
+ button.setAttribute('aria-pressed','true');
+ document.getElementById('answerResult').textContent=responses[button.dataset.answer];
+}));
+document.getElementById('makePromise').addEventListener('click',()=>{
+ const value=document.getElementById('promise').value.trim(), result=document.getElementById('promiseResult');
+ result.textContent=value?`我的青春行动誓言：${value}。从今天开始，脚踏实地，向前一步。`:'请先写下一项具体行动，再生成你的行动誓言。';
+});
+document.getElementById('clearPromise').addEventListener('click',()=>{
+ document.getElementById('promise').value='';
+ document.getElementById('promiseResult').textContent='你的行动誓言将在这里呈现。页面不会上传或保存你填写的内容。';
+});
+</script>
+</body>
+</html>
